@@ -1,0 +1,106 @@
+
+
+<!DOCTYPE HTML>
+<!--
+	Landed by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>HeartWise</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/main.css') }}"
+      />
+      <noscript
+        ><link
+          rel="stylesheet"
+          href="{{ url_for('static', filename='css/noscript.css') }}"
+      /></noscript>
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<h1 id="logo"><a href="index.html">Landed</a></h1>
+					<nav id="nav">
+						<ul>
+							<li><a href="/">Home</a></li>
+							<li><a href="/research">Research</a></li>
+							<li><a href="/data">Data</a></li>
+							<li><a href="/demo" class="button primary">Demo</a></li>
+						</ul>
+					</nav>
+				</header>
+
+			<!-- Main -->
+				<div id="main" class="wrapper style1">
+					<div class="container">
+						<header class="major">
+							<h2>Patient Records</h2>
+							<p>Part of these records were used to train the Neural Network. Try this data on the <a href="/demo">demo</a>.</p>
+						</header>
+
+
+						<!-- Table -->
+							<section>
+								<div class="table-wrapper">
+									<table>
+                                        <thead>
+											<tr>
+												<th>Age</th>
+												<th>Sex</th>
+												<th>Chest Pain Type</th>
+                                                <th>RestingBP</th>
+                                                <th>Cholesterol</th>
+                                                <th>FastingBS</th>
+                                                <th>RestingECG</th>
+                                                <th>MaxHR</th>
+                                                <th>ExerciseAngina</th>
+                                                <th>Oldpeak</th>
+                                                <th>ST_Slope</th>
+                                                <th>Heart Disease</th>
+											</tr>
+										</thead>
+										<tbody>
+                                        {% for row in csv %}
+                                            <tr>
+                                                {% for col in row %}
+                                                <td>{{ col }}</td>
+                                                {% endfor %}
+                                            </tr>
+                                        {% endfor %}
+										</tbody>
+									</table>
+						</div>
+							</section>
+
+
+					</div>
+				</div>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<ul class="copyright">
+						<li>&copy; Yogesh Seenichamy. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</footer>
+
+		</div>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.scrolly.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.dropotron.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.scrollex.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/breakpoints.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/util.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+	</body>
+</html>

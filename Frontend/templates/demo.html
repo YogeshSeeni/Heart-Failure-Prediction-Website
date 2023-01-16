@@ -6,7 +6,7 @@
 -->
 <html>
   <head>
-    <title>Elements - Landed by HTML5 UP</title>
+    <title>HeartWise</title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -31,6 +31,7 @@
 			<ul>
 				<li><a href="/">Home</a></li>
 				<li><a href="/research">Research</a></li>
+				<li><a href="/data">Data</a></li>
 				<li><a href="/demo" class="button primary">Demo</a></li>
 			</ul>
 		</nav>
@@ -49,21 +50,21 @@
               dataset, with successful results in predicting heart failure. By
               filling out the inputs below, the machine learning model will
               provide a prediction of a heart failure event happening in the
-              future.
+              future. You can find data to use <a href="/data">here</a>.
             </p>
           </header>
 
           <!-- Form -->
           <section>
-            <h3>Inputs</h3>
-            <form method="post">
+            <h2>Inputs</h2>
+            <form method="post" action="">
               <div class="row gtr-uniform gtr-50">
                 <div class="col-6 col-12-xsmall">
                   <input
                     type="number"
                     name="age"
                     id="age"
-                    value=""
+                    value="{{request.form['age']}}"
                     placeholder="Age"
 					required
                   />
@@ -73,7 +74,7 @@
                     type="number"
                     name="rbp"
                     id="rbp"
-                    value=""
+                    value="{{request.form['rbp']}}"
                     placeholder="Resting Blood Pressure"
 					required
                   />
@@ -83,7 +84,7 @@
 					  type="number"
 					  name="sc"
 					  id="sc"
-					  value=""
+					  value="{{request.form['sc']}}"
 					  placeholder="Serum Cholesterol"
 					  required
 					/>
@@ -93,7 +94,7 @@
 					  type="number"
 					  name="fbs"
 					  id="fbs"
-					  value=""
+					  value="{{request.form['fbs']}}"
 					  placeholder="Fasting Blood Sugar"
 					  required
 					/>
@@ -103,7 +104,7 @@
 					  type="number"
 					  name="mhr"
 					  id="mhr"
-					  value=""
+					  value="{{request.form['mhr']}}"
 					  placeholder="Maximum Heart Rate"
 					  required
 					/>
@@ -113,44 +114,48 @@
 					  type="number"
 					  name="op"
 					  id="op"
-					  value=""
+					  value="{{request.form['op']}}"
 					  placeholder="Oldpeak"
 					  required
 					/>
 				  </div>
                 <div class="col-12">
-                  <select name="sex" id="sex" required>
+                  <select name="sex" id="sex" value="sex" required>
                     <option value="">- Sex -</option>
-                    <option value="m">Male</option>
-                    <option value="f">Female</option>
+                    <option value="M" {% if sex=='M' %} selected {% endif %}>Male</option>
+                    <option value="F" {% if sex=='F' %} selected {% endif %} >Female</option>
                   </select>
                 </div>
 				<div class="col-12">
 					<select name="cpt" id="cpt" required>
-					  <option value="">- Chest Pain Type -</option>
-					  <option value="m">Male</option>
-					  <option value="f">Female</option>
+					  <option value="" >- Chest Pain Type -</option>
+					  <option value="TA" {% if cpt=='TA' %} selected {% endif %}>Typical Angina</option>
+					  <option value="ATA" {% if cpt=='ATA' %} selected {% endif %}>Atypical Angina</option>
+            <option value="NAP" {% if cpt=='NAP' %} selected {% endif %}>Non-Anginal Pain</option>
+            <option value="ASY" {% if cpt=='ASY' %} selected {% endif %}>Asymptomatic</option>
 					</select>
 				  </div>
 				  <div class="col-12">
 					<select name="restingECG" id="restingECG" required>
 					  <option value="">- Resting Electrocardiogram Results -</option>
-					  <option value="m">Male</option>
-					  <option value="f">Female</option>
+					  <option value="Normal" {% if restingECG=='Normal' %} selected {% endif %}>Normal</option>
+					  <option value="ST" {% if restingECG=='ST' %} selected {% endif %}>ST-T wave abnormality</option>
+            <option value="LVH" {% if restingECG=='LVH' %} selected {% endif %}>Left Ventricle Hypertrophy by Estes' Criteria</option>
 					</select>
 				  </div>
 				  <div class="col-12">
 					<select name="eia" id="eia" required>
 					  <option value="">- Exercise Induced Angina -</option>
-					  <option value="m">Male</option>
-					  <option value="f">Female</option>
+					  <option value="Y" {% if eia=='Y' %} selected {% endif %}>Yes</option>
+					  <option value="N" {% if eia=='N' %} selected {% endif %}>No</option>
 					</select>
 				  </div>
 				  <div class="col-12">
 					<select name="stSlope" id="stSlope" required>
 					  <option value="">- Slope of Peak Exercise ST Segment -</option>
-					  <option value="m">Male</option>
-					  <option value="f">Female</option>
+					  <option value="Up" {% if stSlope=='Up' %} selected {% endif %}>Upsloping</option>
+					  <option value="Flat" {% if stSlope=='Flat' %} selected {% endif %}>Flat</option>
+            <option value="Down" {% if stSlope=='Down' %} selected {% endif %}>Downsloping</option>
 					</select>
 				  </div>
                 <div class="col-12">
@@ -158,15 +163,19 @@
                     <li>
                       <input
                         type="submit"
-                        value="Send Message"
+                        value="Get Prediction"
                         class="primary"
+                        action="predict"
                       />
                     </li>
-                    <li><input type="reset" value="Reset" /></li>
                   </ul>
                 </div>
               </div>
             </form>
+          </section>
+          <section>
+            <h2>Output</h2>
+            <h3>Prediction: {{prediction}}</h3>
           </section>
         </div>
       </div>
