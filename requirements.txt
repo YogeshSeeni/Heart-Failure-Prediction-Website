@@ -1,4 +1,4 @@
 Flask
 gunicorn
 custom-neural-net-creator
-sklearn
+scikit-learn
