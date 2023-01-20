@@ -26,7 +26,7 @@ def demo():
             cholesterol = int(request.form["sc"])
             fastingBS = int(request.form["fbs"])
             maxHR = int(request.form["mhr"])
-            oldPeak = int(request.form["op"])
+            oldPeak = float(request.form["op"])
             sex = request.form["sex"]
             chestPain = request.form["cpt"]
             restingECG = request.form["restingECG"]
@@ -47,7 +47,7 @@ def demo():
             return render_template("demo.html", prediction=str(prediction)+"%", sex=sex, cpt=chestPain, restingECG=restingECG, eia=exerciseAngina, stSlope=stSlope)
         except Exception as e:
             print(e)
-            return render_template("demo.html", prediction="Error", sex=sex, cpt=chestPain, restingECG=restingECG, eia=exerciseAngina, stSlope=stSlope)
+            return render_template("demo.html", prediction="Error")
 
     return render_template("demo.html", prediction="N/A")
 
