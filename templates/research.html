@@ -38,12 +38,48 @@
 
 						<!-- Text -->
 							<section>
-								<h3>Background</h3>
-								<p>Background goes here</p>
+								<h3>Introduction</h3>
+								<p>Neural networks are advanced machine learning algorithms that can detect complex patterns in large amounts of data and make predictions based on the information they have been trained on. These systems are designed to mimic the structure of the human brain, with interconnected layers of “neurons” that transmit information to each other. An artificial neural network typically consists of an input layer, one or more hidden layers, and an output layer, each with a specific number of neurons connected to preceding and following layers.</p>
+								<hr />
+								<h3>Research Question/Topic</h3>
+								<p>According to the Center for Disease Control and Prevention (CDC), heart disease is the leading cause of death for men, women, and people of most racial and ethnic groups in the United States, with 697,000 people in the United States alone dying from heart disease in 2020. Heart Failure is a common event that is caused by various factors of heart disease and is a serious and potentially life-threatening condition. An advanced machine learning model such as a deep neural network can be helpful in classifying/predicting whether a patient is prone to heart failure.  Early prediction of heart failure can help doctors provide the right treatment, which can improve the chance of recovery and the condition from worsening. How can the accuracy in predicting heart failure be maximized using a deep neural network trained on a dataset containing patient records describing various risk factors (hypertension, diabetes, etc.) and whether or not heart failure occurred by manipulating the number of epochs the neural network is trained on? </p>
+								<hr>
+								<h3>Hypothesis</h3>
+								<p>As the number of epochs in a neural network is increased, the testing accuracy of the model will improve. More epochs allow for the neural network to be trained for a longer period of time allowing it to learn more patterns and relationships between various features in the training dataset. Evidence to support this is shown by various studies that have found that increasing the number of epochs led to a corresponding increase in testing accuracy, but only up to a certain point. However, various studies also found that testing accuracy plateaus and even decreases (overfitting).								</p>
+								<hr>
+								<h3>Results</h3>
+								<p>An Paired Two-Samples Positive One-Tailed T-Test was used to check the effect of changing the number of epochs a deep neural network was trained on in the accuracy of the network on a testing dataset filled with records not seen by the network. Compared to the control group of 0 epochs (mean accuracy of 55.8%, SD 10.3%, n=32), the models trained with 10 epochs had a greater testing accuracy (mean accuracy of 81.4%, SD 2.2%, n=32, p less than 0.00000000000001, Cohen's D 3.44). This allows us to reject the null hypothesis (HO) of “If the number of epochs a neural network is trained on is increased, then there will be no effect on the testing accuracy.</p>
+								<p>Linear regression was also used to find the relationship between the number of epochs a deep neural network was trained on and the testing accuracy of the machine learning model. 
+
+									The fitted regression model was: Testing Accuracy (%) = 62.854 + 2.2686 * (Amount of Epochs).
+									
+									The overall regression was statistically significant (R2 = .8216, F(9,11) = 41.45, p < .0001).
+									
+									It was found that the number of epochs the neural network was trained on significantly impacted the predicted testing accuracy of the model (β = 2.266, p < .0001).
+									
+									The results of these analyses allow us to conclude that increasing the number of epochs a deep neural network is trained on does have a positive impact on the accuracy of the network, which can be crucial for the success of the model and the outcomes of the patients.
+									</p>
+								<hr>
+								<h3>Analysis/Discussion</h3>
+								<p>
+									The aim of this study was to increase the accuracy in the early prediction of heart failure. This was attempted through the use of a deep neural network machine learning model that was trained on a dataset of patient records describing various attributes and the condition of heart failure. The number of epochs this deep neural network was trained on was manipulated in order to find the effect it has on the accuracy of the neural network. Results for this study specifically found that increasing the number of epochs directly correlates with the model's testing accuracy up to 10 epochs. </p>
+									<p>Similar results were found in other contexts besides healthcare. One such study by Ajayi and colleagues found the effect of varying training epochs in a convolutional neural network on the accuracy of an automatic weed classification scheme. They also found that the performance and accuracy of their model improve significantly with an increase in the number of epochs. However, their study revealed that when their training epochs exceeded 242,000 epochs their model flattened in terms of accuracy. 
+									</p>
+									<p>
+										The plateau in their study may be explained by the number of epochs that their study attempted to use. This study only went up to 10 epochs because of a relatively small dataset, and increasing it beyond that point may yield different results in the end behavior and should be an area investigated in the future. 
+										</p>
+								<hr>
+								<h3>Conclusion</h3>
+								<p>Over the course of this project a novel tool to predict heart failure in patients early was developed. To achieve this a module that allows for the creation of neural networks was created from scratch using python and published in the Python Packaging Index (PyPI). Data on patients with and without an event of heart failure was then gathered from various sources on the internet to effectively create the biggest heart failure database to date. This data was then processed using modern preprocessing techniques to create optimal input data for training in a machine-learning model. The module created earlier was used to create deep neural networks trained on this input data using a varying number of epochs in order to find the most accurate neural network. The most accurate neural network (10 epochs, ~85% testing accuracy) was then incorporated into a website created with Flask and hosted in a digital ocean droplet with a custom .tech domain name. This website can be found at https://stopheartfailure.tech/
+								</p>
+								<p>The application of this project is a website (https://stopheartfailure.tech/) that uses a machine learning model to predict heart failure in patients early. This model has a high accuracy rate of ~85%, which is an improvement over traditional methods such as manual review of patients' medical records, physical examination, and diagnostic tests which can be time-consuming and may not always provide accurate results. The ability to predict heart failure in its early stages allows healthcare professionals to take preventive measures and improve patient outcomes. This can be done by identifying high-risk patients and providing them with timely and appropriate care, such as lifestyle changes, medication, and other treatments. Additionally, the use of machine learning techniques allows the model to continually improve over time as more data is collected, providing more accurate predictions.
+								</p>
+								<p>In addition to a greater amount of epochs, accuracy in this deep neural network can be further increased through experiments in other hyperparameters. These include general neural network architecture like the number of neurons used in each layer, the number of hidden layers used, and the activation function used in each layer as well. In addition, other parameters in learning can be the optimizer, learning,  and batch size used. Another area of interest could be a look into different types of neural networks and layers. Instead of using strictly dense neural networks in this project, others like recurrent neural networks (RNNs) and convolutional neural networks (CNNs) should be investigated.</p>
 								<hr />
 							</section>
+							<!-- Footer -->
 		</div>
-
+		
     <!-- Scripts -->
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery.scrolly.min.js') }}"></script>
