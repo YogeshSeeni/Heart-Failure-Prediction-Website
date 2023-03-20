@@ -40,3 +40,41 @@ def generate_data():
 def get_prediction(inputs):
     inputs = scaler.transform([inputs])
     return model.predict([[inputs]])[0][0][0][0] * 100
+
+def get_inputs(inputs):
+    age = int(inputs[0])
+    rbp = int(request.form["rbp"])
+    cholesterol = int(request.form["sc"])
+    fastingBS = int(request.form["fbs"])
+    maxHR = int(request.form["mhr"])
+    oldPeak = float(request.form["op"])
+    sex = inputs[1]
+    chestPain = inputs[2]
+    restingECG = request.form["restingECG"]
+    exerciseAngina = request.form["eia"]
+    stSlope = request.form["stSlope"]
+    inputs = [age, rbp, cholesterol, fastingBS, maxHR, oldPeak, "Normal", "ST", "ATA", "NAP", "TA", "Y", "Flat", "Up", "M"]
+
+
+
+
+import csv
+
+with open('heart.csv') as csv_file:
+    csv_reader = csv.reader(csv_file, delimiter=',')
+    line_count = 0
+    for row in csv_reader:
+        if line_count == 0:
+            print(f'Column names are {", ".join(row)}')
+            line_count += 1
+        else:
+            inputs = row
+            for i in range(len(inputs)):
+                if inputs[i] == sex or inputs[i] == chestPain or inputs[i] == restingECG or inputs[i] == exerciseAngina or inputs[i] == stSlope:
+                    inputs[i] = 1
+
+            for i in range(len(inputs)):
+                if type(inputs[i]) == str:
+                    inputs[i] = 0
+            inputs = [float(x) for x in inputs]
+            print(inputs)
